@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NibbleNest - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- App Logo -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="NibbleNest Logo" width="100">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>Find recipes based on the ingredients you have at home!</p>
+
+        <!-- Search Bar -->
+        <form action="/search" method="GET">
+            <input type="text" name="ingredient" placeholder="Enter ingredient(s)">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Navigation Buttons -->
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('show_recipes') }}"><button>View All Recipes</button></a>
+            <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>

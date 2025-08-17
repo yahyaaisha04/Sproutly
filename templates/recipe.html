@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes - Recipe App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function toggleDetails(id) {
+            let details = document.getElementById(id);
+            if (details.style.display === "none") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Recipes</h2>
+        <ul>
+            {% for recipe in recipes %}
+                <li style="list-style: none; margin-bottom: 30px;">
+                    <h3>{{ recipe.name }}</h3>
+                    <img src="{{ recipe.image }}" alt="{{ recipe.name }}" width="200">
+                    <div>
+                        <button onclick="toggleDetails('details{{ loop.index }}')">Show/Hide Nutrients</button>
+                        <div id="details{{ loop.index }}" style="display:none; margin-top: 10px;">
+                            <p><b>Calories:</b> {{ recipe.calories }}</p>
+                            <p><b>Nutrients:</b> {{ recipe.nutrients }}</p>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('home') }}"><button>Back to Home</button></a>
+    </div>
+</body>
+</html>
